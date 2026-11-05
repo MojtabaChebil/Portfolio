@@ -1,13 +1,3 @@
-// ============================================================
-//  KOL EL PROJETS HOUNI.
-//  Bech tzid projet jdid: copy objet kemel, baddel el valeurs.
-//  - slug: esm fel URL (/work/<slug>), bla espaces, unique
-//  - image: 7ot el capture fi /public/assets/projects/ ; ken fergha
-//    yoba3 placeholder b esm el projet
-//  - github / live: ken fergha, el bouton ma yoba3ch
-//  - year: "2024" wala "2023 · updated 2026" ken 3malt update
-// ============================================================
-
 export const projects = [
   {
     slug: "tech-assessment-platform",
@@ -162,25 +152,6 @@ export const projects = [
     live: "",
     github: "",
     note: "Company project – source code is not public.",
-  },
-  {
-    slug: "talkit",
-    num: "05",
-    title: "TalkIt – Stand-up Comedy Video Platform",
-    type: "Internship · Alpha Computers & Consulting",
-    year: "2021",
-    summary:
-      "Social video platform where users publish and watch stand-up comedy content.",
-    problem: "",
-    role: "Full-stack development of the platform with the MERN stack.",
-    features: [
-      // TODO: zid el features el 7a9ani9iya (upload, likes, comments, profils...)
-    ],
-    stack: ["React", "Node.js", "Express", "MongoDB"],
-    image: "/assets/talkit.png",
-    live: "",
-    github: "",
-    note: "",
   },
 ];
 

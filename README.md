@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mojtaba Chebil – Portfolio
 
-## Getting Started
+Personal portfolio of **Mojtaba Chebil**, full-stack developer (React/Next.js, Node.js, Spring Boot) and M.Sc. Computer Science student at Ostfalia University of Applied Sciences.
 
-First, run the development server:
+🔗 **Live site:** [mojtabachebil.vercel.app](https://mojtabachebil.vercel.app)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Portfolio preview](public/assets/preview.png)
+
+## Features
+
+- **Home** – introduction, availability and downloadable CV
+- **Resume** – experience, education, skills and volunteering in tabs
+- **Work** – project slider with a detail page for each project (screenshots, demo videos, tech stack)
+- **Contact** – contact form powered by Formspree
+- Responsive design with page transitions and animations
+- SEO metadata and Open Graph image for link previews
+
+## Tech Stack
+
+| Area      | Technologies                              |
+| --------- | ----------------------------------------- |
+| Framework | Next.js 14 (App Router), React 18         |
+| Styling   | Tailwind CSS, shadcn/ui (Radix UI)        |
+| Animation | Framer Motion, Swiper, react-countup      |
+| Forms     | Formspree                                 |
+| Hosting   | Vercel                                    |
+
+## Project Structure
+
+```
+app/            Pages (home, resume, work, work/[slug], contact)
+components/     Reusable UI components (header, nav, photo, stats…)
+components/ui/  shadcn/ui base components
+data/           Project data (projects.js)
+lib/            Site config with personal info and links (site.js)
+public/         Images, demo videos and CV
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Contact
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Email:** chebil.moujtaba@gmail.com
+- **LinkedIn:** [mojtaba-chebil](https://www.linkedin.com/in/mojtaba-chebil-09996a18a/)
+- **GitHub:** [MojtabaChebil](https://github.com/MojtabaChebil)

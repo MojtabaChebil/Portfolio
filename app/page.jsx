@@ -11,7 +11,7 @@ const Home = () => {
       <div className="container mx-auto h-full">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24">
           <div className="text-center xl:text-left order-2 xl:order-none">
-            {/* Disponibilité: awel 7aja yechoufha el recruiter */}
+          
             <span className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 rounded-full px-4 py-1 mb-4">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
               {site.availability}

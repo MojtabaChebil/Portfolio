@@ -24,7 +24,6 @@ module.exports = {
   	extend: {
   		colors: {
 			primary:"#1c1c22",
-			// El couleur accent tetbaddel fi app/globals.css (--accent)
 			accent: {
 				DEFAULT: "rgb(var(--accent) / <alpha-value>)",
 				hover: "rgb(var(--accent-hover) / <alpha-value>)",

@@ -96,7 +96,7 @@ const Work = () => {
             >
               {projects.map((p) => (
                 <SwiperSlide key={p.slug} className="w-full">
-                  {/* Cadre navigateur: el capture toba3 kemla (proportion 2:1, bla 9ass) */}
+                
                   <div className="rounded-xl overflow-hidden border border-white/10 bg-[#232329] shadow-2xl">
                     <div className="h-8 flex items-center gap-2 px-4 bg-[#27272c] border-b border-white/10">
                       <span className="w-3 h-3 rounded-full bg-[#ff5f57]"></span>

@@ -2,9 +2,7 @@
 
 import CountUp from "react-countup";
 
-// Ar9am s7i7a bark, elli tnajjem tethbetha fel entretien.
-// - num: ra9m (ya3mel animation)  /  value: texte (ex: "C1")
-// - suffix: ex "+"
+
 const stats = [
   { num: 4, text: "Internships & theses" },
   { num: 7, suffix: "+", text: "Projects built" },

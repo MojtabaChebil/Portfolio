@@ -3,7 +3,7 @@
 import { useSwiper } from "swiper/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 
-// Boutons dawra + compteur "01 / 03"
+
 const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles, current, total }) => {
   const swiper = useSwiper();
   return (

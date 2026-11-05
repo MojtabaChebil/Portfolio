@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  /* ===== COULEUR ACCENT: baddel houni bark (valeurs R G B) ===== */
+
   :root {
-    --accent: 52 211 153;       /* #34d399 emerald */
-    --accent-hover: 16 185 129; /* #10b981 */  
+    --accent: 52 211 153;      
+    --accent-hover: 16 185 129; 
   }
   body {
     @apply font-primary bg-primary text-white leading-loose;

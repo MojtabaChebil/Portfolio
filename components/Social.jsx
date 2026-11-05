@@ -2,7 +2,7 @@
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { site } from "@/lib/site";
 
-// El liens yetbaddlou fi lib/site.js
+
 const socials = [
   { icon: <FaGithub />, path: site.github, label: "GitHub" },
   { icon: <FaLinkedinIn />, path: site.linkedin, label: "LinkedIn" },
@@ -12,7 +12,7 @@ const Social = ({ containerStyles, iconStyles }) => {
   return (
     <div className={containerStyles}>
       {socials
-        .filter((item) => item.path) // icône ma toba3ch ken el lien fergh
+        .filter((item) => item.path) 
         .map((item, index) => {
           return (
             <a

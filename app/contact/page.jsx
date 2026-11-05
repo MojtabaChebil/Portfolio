@@ -22,7 +22,7 @@ const info = [
   { icon: <FaMapMarkerAlt />, title: "Location", description: site.location },
 ];
 
-// Bedel "Select a service": el recruiter y9oul 3la chnouwa yekteblek
+
 const topics = [
   "Werkstudent position",
   "Full-time position",
@@ -32,7 +32,7 @@ const topics = [
 
 const Contact = () => {
   const [topic, setTopic] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [status, setStatus] = useState("idle"); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ const Contact = () => {
     const data = Object.fromEntries(new FormData(form));
     data.topic = topic;
 
-    // Ken Formspree mouch mrakkeb: n7ellou el email mta3 el visiteur
+  
     if (!site.formspreeId) {
       const body = `${data.message}\n\n— ${data.firstname} ${data.lastname}\n${data.email}\n${data.phone || ""}`;
       window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(

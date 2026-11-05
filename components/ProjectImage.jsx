@@ -1,7 +1,4 @@
 import Image from "next/image";
-
-// Ken el projet ma3andouch capture, n'affichiw placeholder nthif bel esm
-// (9bal kenet image "/" cassée).
 const ProjectImage = ({ project, sizes = "(min-width: 1200px) 50vw, 100vw" }) => {
   if (!project.image) {
     return (

@@ -51,7 +51,6 @@ const about = {
   ],
 };
 
-// ⚠ Les dates lazem ykounou NAFS EL DATES elli fel CV.
 const experience = {
   title: "My experience",
   description:
@@ -75,8 +74,7 @@ const experience = {
       duration: "08.2021",
       stack: "MongoDB, Express, React, Node.js",
     },
-    // TODO: Proxym Group ken s7i7 → zidou fel CV zeda w na7i el // 9bal el ligne
-    // { company: "Proxym Group", position: "Full-Stack Developer Intern", duration: "08.2020 – 09.2020", stack: "" },
+  
     {
       company: "eNano-Tech · Monastir",
       position: "Front-End Developer Intern",

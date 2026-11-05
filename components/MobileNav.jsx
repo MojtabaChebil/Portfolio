@@ -18,7 +18,7 @@ const MobileNav = () => {
       <SheetContent className="flex flex-col">
         <SheetTitle className="sr-only">Navigation</SheetTitle>
         <div className="mt-32 mb-40 text-center text-2xl">
-          {/* SheetClose: ysakker el menu ki tcliki */}
+       
           <SheetClose asChild>
             <Link href="/">
               <span className="text-4xl font-semibold">

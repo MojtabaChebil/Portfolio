@@ -6,7 +6,7 @@ import { projects, getProject } from "@/data/projects";
 import ProjectImage from "@/components/ProjectImage";
 import { Button } from "@/components/ui/button";
 
-// Page detail l kol projet: /work/<slug>
+
 export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
@@ -42,7 +42,7 @@ export default function ProjectPage({ params }) {
           <p className="text-white/70 text-lg">{project.summary}</p>
         </div>
 
-        {/* Ken el projet 3andou video demo, n'affichiwha bedel el image */}
+     
         {project.video ? (
           <div className="flex flex-col gap-2">
             <video
