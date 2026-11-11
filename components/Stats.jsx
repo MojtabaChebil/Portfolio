@@ -1,9 +1,7 @@
 "use client";
 
-import CountUp from "react-countup";
+import { useEffect, useState } from "react";
 import { useLang } from "./LanguageProvider";
-
-// "key" points to the label in lib/dictionaries.js (stats.*)
 const stats = [
   { num: 4, key: "internships" },
   { num: 7, suffix: "+", key: "projects" },
@@ -12,6 +10,42 @@ const stats = [
 ];
 
 const numberClass = "text-4xl xl:text-6xl font-extrabold";
+const AnimatedNumber = ({ value, suffix = "", duration = 2000, delay = 300 }) => {
+  const [current, setCurrent] = useState(value);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || document.hidden) return;
+
+    let frame;
+    let startTime;
+    const step = (now) => {
+      if (startTime === undefined) startTime = now;
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out
+      setCurrent(Math.round(value * eased));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+
+    setCurrent(0);
+    const timer = setTimeout(() => {
+      frame = requestAnimationFrame(step);
+    }, delay);
+
+    return () => {
+      clearTimeout(timer);
+      cancelAnimationFrame(frame);
+      setCurrent(value);
+    };
+  }, [value, duration, delay]);
+
+  return (
+    <span className={numberClass}>
+      {current}
+      {suffix}
+    </span>
+  );
+};
 
 const Stats = () => {
   const { t } = useLang();
@@ -29,16 +63,7 @@ const Stats = () => {
                 {item.value ? (
                   <span className={numberClass}>{item.value}</span>
                 ) : (
-                  // The final number is in the HTML from the server, so it is never empty
-                  // (Google, LinkedIn previews, slow JS). CountUp then animates it in the browser.
-                  <CountUp end={item.num} suffix={item.suffix || ""} duration={2} delay={0.3}>
-                    {({ countUpRef }) => (
-                      <span ref={countUpRef} className={numberClass}>
-                        {item.num}
-                        {item.suffix || ""}
-                      </span>
-                    )}
-                  </CountUp>
+                  <AnimatedNumber value={item.num} suffix={item.suffix} />
                 )}
                 <p
                   className={`${
