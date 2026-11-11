@@ -1,6 +1,3 @@
-// Texts of the resume page in English and German.
-// Icons and layout stay in app/resume/page.jsx.
-
 export const resumeContent = {
   en: {
     tabs: {

@@ -14,8 +14,8 @@ export function LanguageProvider({ initialLang, children }) {
     if (next === lang) return;
     document.cookie = `${LANG_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
     document.documentElement.lang = next;
-    setLangState(next); // client components switch immediately
-    router.refresh(); // server components re-render in the new language
+    setLangState(next); 
+    router.refresh(); 
   };
 
   return (

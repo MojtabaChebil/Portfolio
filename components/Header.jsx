@@ -26,7 +26,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile: language switcher stays visible next to the menu icon */}
+      
         <div className="xl:hidden flex items-center gap-6">
           <LanguageSwitcher />
           <MobileNav />

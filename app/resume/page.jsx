@@ -39,8 +39,7 @@ import { site } from "@/lib/site";
 import { useLang } from "@/components/LanguageProvider";
 import { resumeContent } from "@/data/resume";
 
-// Skills m9assmin: "core" = elli tesst3melhom w tnajjem t7ki 3lihom fel entretien
-// Icons per skill group; group titles come from data/resume.js
+
 const skillGroups = {
   groups: [
     {
@@ -81,7 +80,7 @@ const skillGroups = {
   ],
 };
 
-// Carte wa7da lel Experience / Education / Association (9bal kenet mkarrra 3 marrat)
+
 const TimelineCard = ({ duration, title, subtitle, extra }) => (
   <li className="bg-[#232329] min-h-[184px] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1">
     <span className="text-accent">{duration}</span>

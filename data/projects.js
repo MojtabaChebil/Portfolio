@@ -40,7 +40,7 @@ export const projects = [
     live: "",
     github: "",
     note: "Company project – source code is not public.",
-    // German texts – gallery = captions in the same order as above
+
     de: {
       title: "StackSkill – Plattform für technische Assessments",
       type: "Masterarbeit · Pixelium",
@@ -279,8 +279,6 @@ export const projects = [
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);
 
-// Returns the project with its German texts when lang === "de".
-// Fields missing in "de" (stack, links, images …) stay as in English.
 export const localizeProject = (project, lang) => {
   if (!project || lang !== "de" || !project.de) return project;
   const { gallery: captions, ...texts } = project.de;
