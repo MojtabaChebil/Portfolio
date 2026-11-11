@@ -3,6 +3,9 @@ import "./globals.css";
 
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
+import { LanguageProvider } from "@/components/LanguageProvider";
+import { getLang } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -10,29 +13,35 @@ const jetBrainsMono = JetBrains_Mono({
   variable: "font-jetBrainsMono",
 });
 
-export const metadata = {
-  metadataBase: new URL("https://mojtabachebil.vercel.app/"),
-  title: {
-    default: "Mojtaba Chebil – Full-Stack Developer",
-    template: "%s | Mojtaba Chebil",
-  },
-  description:
-    "Full-stack developer (React/Next.js, Node.js, Spring Boot) and M.Sc. Computer Science student at Ostfalia. Open to Werkstudent and full-time roles in Germany.",
-  openGraph: {
-    title: "Mojtaba Chebil – Full-Stack Developer",
-    description:
-      "Full-stack developer (React/Next.js, Node.js, Spring Boot). Open to Werkstudent and full-time roles in Germany.",
-    images: ["/assets/mojtaba.png"],
-    type: "website",
-  },
-};
+export function generateMetadata() {
+  const lang = getLang();
+  const { meta } = getDictionary(lang);
+  return {
+    metadataBase: new URL("https://mojtabachebil.vercel.app/"),
+    title: {
+      default: meta.title,
+      template: "%s | Mojtaba Chebil",
+    },
+    description: meta.description,
+    openGraph: {
+      title: meta.title,
+      description: meta.ogDescription,
+      images: ["/assets/mojtaba.png"],
+      type: "website",
+      locale: lang === "de" ? "de_DE" : "en_US",
+    },
+  };
+}
 
 export default function RootLayout({ children }) {
+  const lang = getLang();
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={jetBrainsMono.variable}>
-        <Header />
-        <PageTransition>{children}</PageTransition>
+        <LanguageProvider initialLang={lang}>
+          <Header />
+          <PageTransition>{children}</PageTransition>
+        </LanguageProvider>
       </body>
     </html>
   );

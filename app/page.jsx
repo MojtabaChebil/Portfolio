@@ -4,8 +4,11 @@ import Social from "@/components/Social";
 import Photo from "@/components/Photo";
 import Stats from "@/components/Stats";
 import { site } from "@/lib/site";
+import { getLang } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 
 const Home = () => {
+  const t = getDictionary(getLang());
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
@@ -14,18 +17,13 @@ const Home = () => {
           
             <span className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 rounded-full px-4 py-1 mb-4">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-              {site.availability}
+              {t.site.availability}
             </span>
-            <span className="block text-xl">{site.role}</span>
+            <span className="block text-xl">{t.site.role}</span>
             <h1 className="h1 mb-6">
-              Hello I&apos;m <br /> <span className="text-accent">{site.name}</span>
+              {t.home.hello} <br /> <span className="text-accent">{site.name}</span>
             </h1>
-            <p className="max-w-[540px] mb-9 text-white/80">
-              Full-stack developer building web applications with React/Next.js,
-              Node.js and Spring Boot. M.Sc. Computer Science student at Ostfalia
-              University, with a Tunisian Master&apos;s degree recognised by the ZAB.
-              German C1.
-            </p>
+            <p className="max-w-[540px] mb-9 text-white/80">{t.home.intro}</p>
             <div className="flex flex-col xl:flex-row items-center gap-8">
               <a href={site.cvPath} download>
                 <Button
@@ -33,7 +31,7 @@ const Home = () => {
                   size="lg"
                   className="uppercase flex items-center gap-2"
                 >
-                  <span>Download CV</span>
+                  <span>{t.home.downloadCv}</span>
                   <FiDownload className="text-xl" />
                 </Button>
               </a>

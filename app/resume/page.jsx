@@ -36,89 +36,15 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 import { site } from "@/lib/site";
-
-const about = {
-  title: "About me",
-  description:
-    "I'm a full-stack developer from Tunisia, now based in Braunschweig and studying for an M.Sc. in Computer Science at Ostfalia. I've built web applications in internships and thesis projects with React/Next.js, Node.js, Spring Boot and MongoDB. Outside of code I've led teams as president of JCI Bekalta, which taught me to organise, communicate and take responsibility.",
-  info: [
-    { fieldName: "Name", fieldValue: site.name },
-    { fieldName: "Location", fieldValue: site.location },
-    { fieldName: "Phone", fieldValue: site.phone },
-    { fieldName: "Email", fieldValue: site.email },
-    { fieldName: "Availability", fieldValue: "Werkstudent (20 h/week) or full-time" },
-    { fieldName: "Languages", fieldValue: "Arabic (native), German (C1), French (B2), English (B1)" },
-  ],
-};
-
-const experience = {
-  title: "My experience",
-  description:
-    "Internships and thesis projects where I built real applications for companies, from e-commerce to technical recruiting platforms.",
-  items: [
-    {
-      company: "Pixelium · Sousse",
-      position: "Master's Thesis – Full-Stack Developer",
-      duration: "02.2024 – 05.2024",
-      stack: "Next.js, Fastify, MongoDB, Docker",
-    },
-    {
-      company: "DIGINOV · Sousse",
-      position: "Bachelor's Thesis – Web Developer",
-      duration: "02.2022 – 05.2022",
-      stack: "PrestaShop, PHP",
-    },
-    {
-      company: "Alpha Computers & Consulting · Mahdia",
-      position: "Full-Stack Developer Intern",
-      duration: "08.2021",
-      stack: "MongoDB, Express, React, Node.js",
-    },
-  
-    {
-      company: "eNano-Tech · Monastir",
-      position: "Front-End Developer Intern",
-      duration: "01.2020",
-      stack: "HTML, CSS, JavaScript",
-    },
-  ],
-};
-
-const education = {
-  title: "My education",
-  description:
-    "Computer science studies in Tunisia and Germany, with a focus on web and multimedia applications.",
-  items: [
-    {
-      institution: "Ostfalia University of Applied Sciences, Wolfenbüttel",
-      degree: "M.Sc. Computer Science",
-      duration: "2026 – present",
-    },
-    {
-      institution: "ISITCom Sousse · recognised by the ZAB as a German Master's level",
-      degree: "Professional Master in Web & Multimedia Services",
-      duration: "2022 – 2024",
-    },
-    {
-      institution: "ISITCom Hammam Sousse",
-      degree: "Bachelor in Computer Science & Multimedia",
-      duration: "2019 – 2022",
-    },
-    {
-      institution: "Bekalta High School",
-      degree: "Baccalaureate, Computer Science",
-      duration: "2019",
-    },
-  ],
-};
+import { useLang } from "@/components/LanguageProvider";
+import { resumeContent } from "@/data/resume";
 
 // Skills m9assmin: "core" = elli tesst3melhom w tnajjem t7ki 3lihom fel entretien
-const skills = {
-  title: "My skills",
-  description: "Core technologies I use in my projects, plus tools I have worked with.",
+// Icons per skill group; group titles come from data/resume.js
+const skillGroups = {
   groups: [
     {
-      name: "Core",
+      key: "core",
       items: [
         { icon: <FaReact />, name: "React.js" },
         { icon: <SiNextdotjs />, name: "Next.js" },
@@ -137,7 +63,7 @@ const skills = {
       ],
     },
     {
-      name: "Also worked with",
+      key: "other",
       items: [
         { icon: <FaHtml5 />, name: "HTML 5" },
         { icon: <FaCss3 />, name: "CSS 3" },
@@ -152,28 +78,6 @@ const skills = {
         { icon: <SiAdobepremierepro />, name: "Premiere Pro" },
       ],
     },
-  ],
-};
-
-const association = {
-  title: "Volunteering & leadership",
-  description:
-    "Leadership roles in civic, humanitarian and student organisations, where I organised programmes, led teams and handled external relations.",
-  items: [
-    { company: "JCI Bekalta", position: "President", duration: "01.2023 – 12.2023" },
-    {
-      company: "JCI Bekalta",
-      position: "Vice President, Programmes & External Relations",
-      duration: "01.2022 – 12.2022",
-    },
-    { company: "Club ARSII-ISITCom", position: "Vice President", duration: "12.2021 – 12.2022" },
-    {
-      company: "Red Crescent (ISITCom chapter)",
-      position: "Head of First Aid Department",
-      duration: "09.2020 – 03.2023",
-    },
-    { company: "ARSII Association", position: "Member", duration: "03.2021 – 07.2024" },
-    { company: "ENIM AeroSpace Club", position: "Member", duration: "10.2020 – 07.2024" },
   ],
 };
 
@@ -198,6 +102,22 @@ const TabHeader = ({ title, description }) => (
 );
 
 const Resume = () => {
+  const { lang, t } = useLang();
+  const content = resumeContent[lang];
+  const { experience, education, association } = content;
+  const skills = { ...content.skills, groups: skillGroups.groups };
+  const about = {
+    ...content.about,
+    info: [
+      { fieldName: content.about.labels.name, fieldValue: site.name },
+      { fieldName: content.about.labels.location, fieldValue: t.site.location },
+      { fieldName: content.about.labels.phone, fieldValue: site.phone },
+      { fieldName: content.about.labels.email, fieldValue: site.email },
+      { fieldName: content.about.labels.availability, fieldValue: content.about.availability },
+      { fieldName: content.about.labels.languages, fieldValue: content.about.languages },
+    ],
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -210,11 +130,11 @@ const Resume = () => {
       <div className="container mx-auto">
         <Tabs defaultValue="experience" className="flex flex-col xl:flex-row gap-[60px]">
           <TabsList className="flex flex-col w-full max-w-[380px] mx-auto xl:mx-0 gap-6">
-            <TabsTrigger value="experience">Experience</TabsTrigger>
-            <TabsTrigger value="education">Education</TabsTrigger>
-            <TabsTrigger value="skills">Skills</TabsTrigger>
-            <TabsTrigger value="association">Volunteering</TabsTrigger>
-            <TabsTrigger value="about">About me</TabsTrigger>
+            <TabsTrigger value="experience">{content.tabs.experience}</TabsTrigger>
+            <TabsTrigger value="education">{content.tabs.education}</TabsTrigger>
+            <TabsTrigger value="skills">{content.tabs.skills}</TabsTrigger>
+            <TabsTrigger value="association">{content.tabs.association}</TabsTrigger>
+            <TabsTrigger value="about">{content.tabs.about}</TabsTrigger>
           </TabsList>
 
           <div className="min-h-[70vh] w-full">
@@ -263,8 +183,8 @@ const Resume = () => {
                 <ScrollArea className="h-[440px]">
                   <div className="flex flex-col gap-8">
                     {skills.groups.map((group) => (
-                      <div key={group.name} className="flex flex-col gap-4">
-                        <h4 className="text-xl text-accent text-center xl:text-left">{group.name}</h4>
+                      <div key={group.key} className="flex flex-col gap-4">
+                        <h4 className="text-xl text-accent text-center xl:text-left">{content.skills.groups[group.key]}</h4>
                         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:gap-[30px] gap-4">
                           {group.items.map((skill) => (
                             <li key={skill.name}>

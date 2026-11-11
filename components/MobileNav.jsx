@@ -4,19 +4,21 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { CiMenuFries } from "react-icons/ci";
 import { links } from "./navLinks";
+import { useLang } from "./LanguageProvider";
 
 const isActive = (path, pathname) =>
   path === "/" ? pathname === "/" : pathname.startsWith(path);
 
 const MobileNav = () => {
   const pathname = usePathname();
+  const { t } = useLang();
   return (
     <Sheet>
-      <SheetTrigger className="flex justify-center items-center" aria-label="Open menu">
+      <SheetTrigger className="flex justify-center items-center" aria-label={t.header.openMenu}>
         <CiMenuFries className="text-[32px] text-accent" />
       </SheetTrigger>
       <SheetContent className="flex flex-col">
-        <SheetTitle className="sr-only">Navigation</SheetTitle>
+        <SheetTitle className="sr-only">{t.header.navigation}</SheetTitle>
         <div className="mt-32 mb-40 text-center text-2xl">
        
           <SheetClose asChild>
@@ -37,7 +39,7 @@ const MobileNav = () => {
                     isActive(link.path, pathname) ? "text-accent border-b-2 border-accent" : ""
                   } text-xl capitalize hover:text-accent transition-all`}
                 >
-                  {link.name}
+                  {t.nav[link.key]}
                 </Link>
               </SheetClose>
             );

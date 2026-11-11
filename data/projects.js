@@ -40,6 +40,40 @@ export const projects = [
     live: "",
     github: "",
     note: "Company project – source code is not public.",
+    // German texts – gallery = captions in the same order as above
+    de: {
+      title: "StackSkill – Plattform für technische Assessments",
+      type: "Masterarbeit · Pixelium",
+      summary:
+        "Plattform für technisches Recruiting und Kompetenzmanagement: Online-Coding-Tests mit integriertem Code-Editor, rollenbasiertem Zugriff und Echtzeit-Dashboards.",
+      problem:
+        "Recruiter brauchten eine strukturierte Möglichkeit, die Programmierkenntnisse von Kandidaten zu prüfen und sie durch den gesamten Interviewprozess zu begleiten.",
+      role:
+        "Als Masterarbeit eigenständig end-to-end konzipiert und entwickelt: Datenmodell, REST-API, Authentifizierung und Frontend.",
+      features: [
+        "Live-Coding-Interview: Code-Editor, Sprachauswahl, Countdown-Timer und automatische Testfälle",
+        "Echtzeit-Chat zwischen Kandidat und Recruiter während des Interviews",
+        "Ergebnisse pro Interview: bestandene Testfälle, Laufzeit, Speicherverbrauch und Zeit außerhalb des Tabs",
+        "Recruiter-Bereich: Kandidaten per E-Mail einladen, Interviews planen und verfolgen",
+        "Super-Admin-Bereich: Plattformstatistiken, Benutzerverwaltung und Coding-Challenges (erstellen, bearbeiten, löschen)",
+        "Übungsmodus, damit sich Kandidaten vor dem Interview vorbereiten können",
+        "Drei Rollen mit JWT-Authentifizierung: Kandidat, Recruiter, Super-Admin",
+      ],
+      videoCaption: "Demo-Video (2:00) – gekürzt aus der vollständigen Aufnahme des Projekts.",
+      note: "Unternehmensprojekt – der Quellcode ist nicht öffentlich.",
+      gallery: [
+        "Live-Coding-Interview mit Timer und Testfällen",
+        "Interview-Ergebnisse inkl. Zeit außerhalb des Tabs",
+        "Recruiter-Dashboard",
+        "Interview planen",
+        "Kandidaten per E-Mail einladen",
+        "Übungsmodus für Kandidaten",
+        "Super-Admin-Statistiken",
+        "Coding-Challenges verwalten",
+        "Landingpage",
+        "Landingpage – technische Highlights",
+      ],
+    },
   },
   {
     slug: "medical-appointments",
@@ -77,6 +111,36 @@ export const projects = [
     live: "",
     github: "https://github.com/MojtabaChebil/Medicine-App",
     note: "",
+    de: {
+      title: "MedApp – Terminverwaltung für Arztpraxen",
+      type: "Studienprojekt · Spring-Boot-Microservices",
+      year: "2024 · überarbeitet 2026",
+      summary:
+        "Terminbuchung für Patienten und Ärzte als Spring-Boot-Microservices hinter einem API-Gateway, mit Angular-Frontend und rollenbasiertem Zugriff.",
+      problem:
+        "Patienten, Ärzte und Praxis brauchen einen zentralen Ort, um Termine zu buchen, zu bestätigen und abzusagen – ohne Doppelbuchungen und so, dass jede Rolle nur ihre eigenen Daten sieht.",
+      role:
+        "Das gesamte System allein konzipiert und umgesetzt: Aufteilung in Services, REST-APIs, JWT-Sicherheit im Gateway, Kommunikation zwischen den Services, Tests und das Angular-Frontend.",
+      features: [
+        "6 Spring-Boot-Services: Gateway, Auth, Patienten, Ärzte, Termine, Config-Server + Eureka-Discovery",
+        "JWT-Authentifizierung (BCrypt), geprüft im Gateway, mit drei Rollen: Patient, Arzt, Admin",
+        "Buchungsregeln: keine überschneidenden Termine für Arzt oder Patient (HTTP 409), nur zukünftige Termine",
+        "Kommunikation zwischen den Services mit OpenFeign; jeder Service hat eine eigene MySQL-Datenbank",
+        "Saubere REST-API mit Validierung, Fehlerantworten nach RFC 7807 und Swagger UI",
+        "Unit-Tests mit JUnit 5 und Mockito",
+        "Angular-19-Frontend: Admin-Dashboard, Terminkalender für Ärzte, Terminbuchung für Patienten",
+      ],
+      gallery: [
+        "Microservice-Architektur",
+        "Admin-Dashboard",
+        "Termine – bestätigen oder absagen",
+        "Terminkalender des Arztes (Rolle Arzt)",
+        "Eigene Termine des Patienten (Rolle Patient)",
+        "Patientenverwaltung",
+        "Ärzte, Filter nach Fachrichtung",
+        "Registrierung als Patient oder Arzt",
+      ],
+    },
   },
   {
     slug: "buchshop",
@@ -112,6 +176,33 @@ export const projects = [
     live: "",
     github: "https://github.com/MojtabaChebil/BuchShop",
     note: "",
+    de: {
+      title: "BuchShop – Online-Buchhandlung",
+      type: "Studienprojekt · Full-Stack-Webanwendung",
+      year: "2023 · überarbeitet 2026",
+      summary:
+        "Online-Buchhandlung, in der Kunden den Katalog durchsuchen, Favoriten speichern, den Warenkorb füllen und bestellen – Angular-Frontend mit einer REST-API in Node.js/Express.",
+      role:
+        "Frontend und Backend allein entwickelt: REST-API mit JWT-Authentifizierung, Angular-App mit Standalone Components und Signals, responsives Design.",
+      features: [
+        "Buchkatalog mit Suche und Kategorie-Filtern, Detailseite pro Buch",
+        "Registrierung und Login mit JWT, Passwörter mit bcrypt gehasht",
+        "Favoriten und Warenkorb mit live berechneter Zwischensumme",
+        "Checkout, Bestellbestätigung und Bestellhistorie im Kundenkonto",
+        "Route Guards und ein HTTP-Interceptor, der das Token automatisch mitsendet",
+        "Vollständig responsiv (Smartphone, Tablet, Desktop)",
+      ],
+      gallery: [
+        "Startseite",
+        "Katalog mit Kategorie-Filter",
+        "Buchdetails",
+        "Warenkorb",
+        "Favoriten",
+        "Kundenkonto und Bestellhistorie",
+        "Login",
+        "Mobile Ansicht",
+      ],
+    },
   },
   {
     slug: "savane-ecommerce",
@@ -152,7 +243,50 @@ export const projects = [
     live: "",
     github: "",
     note: "Company project – source code is not public.",
+    de: {
+      title: "SAVANE – E-Commerce-Marktplatz",
+      type: "Bachelorarbeit · DIGINOV",
+      summary:
+        "Multi-Vendor-Marktplatz auf Basis von PrestaShop: Gewerbliche und private Verkäufer veröffentlichen ihre Produkte, Kunden bestellen und bezahlen online, und ein Super-Admin verwaltet die Plattform.",
+      problem:
+        "Kunden mussten persönlich ins Geschäft gehen, um Produkte zu finden und zu kaufen. Ziel war ein Online-Marktplatz, auf dem Verkäufer ihre Produkte anbieten und Kunden mit Lieferung nach Hause bestellen können.",
+      role:
+        "Die Plattform als Bachelorarbeit in einem Scrum-Team umgesetzt: Anforderungsanalyse und UML-Entwurf (Anwendungsfall-, Klassen- und Sequenzdiagramme), Wireframes mit Balsamiq sowie die Umsetzung von Shop, Verkäuferbereich und Super-Admin-Backoffice.",
+      features: [
+        "Produktkatalog mit Suche, Schnellansicht, Favoriten und Warenkorb",
+        "Checkout mit Versandoptionen und Kartenzahlung über Stripe",
+        "Bestellbestätigung, Bestellhistorie und PDF-Rechnungen",
+        "Verkäuferkonten für Gewerbetreibende (SIRET, USt-IdNr.) und Privatpersonen, die ihre eigenen Produkte verwalten",
+        "Super-Admin-Backoffice für Benutzer, Produkte und Kategorien",
+        "Live-Kundenchat mit Tidio",
+      ],
+      videoCaption: "Demo-Video (1:30), während des Projekts aufgenommen.",
+      note: "Unternehmensprojekt – der Quellcode ist nicht öffentlich.",
+      gallery: [
+        "Shop-Startseite",
+        "Produkt-Schnellansicht",
+        "Warenkorb",
+        "Kartenzahlung (Stripe)",
+        "Bestellbestätigung",
+        "Bestellhistorie & Rechnungen",
+        "Live-Chat (Tidio)",
+        "Registrierung für gewerbliche Verkäufer",
+        "Super-Admin-Backoffice",
+      ],
+    },
   },
 ];
 
 export const getProject = (slug) => projects.find((p) => p.slug === slug);
+
+// Returns the project with its German texts when lang === "de".
+// Fields missing in "de" (stack, links, images …) stay as in English.
+export const localizeProject = (project, lang) => {
+  if (!project || lang !== "de" || !project.de) return project;
+  const { gallery: captions, ...texts } = project.de;
+  return {
+    ...project,
+    ...texts,
+    gallery: project.gallery?.map((g, i) => ({ ...g, caption: captions?.[i] ?? g.caption })),
+  };
+};

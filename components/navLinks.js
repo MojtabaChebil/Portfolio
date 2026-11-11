@@ -1,6 +1,7 @@
+// "key" points to the label in lib/dictionaries.js (nav.home, nav.resume, …)
 export const links = [
-  { name: "home", path: "/" },
-  { name: "resume", path: "/resume" },
-  { name: "work", path: "/work" },
-  { name: "contact", path: "/contact" },
+  { key: "home", path: "/" },
+  { key: "resume", path: "/resume" },
+  { key: "work", path: "/work" },
+  { key: "contact", path: "/contact" },
 ];

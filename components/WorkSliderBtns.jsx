@@ -4,11 +4,11 @@ import { useSwiper } from "swiper/react";
 import { PiCaretLeftBold, PiCaretRightBold } from "react-icons/pi";
 
 
-const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles, current, total }) => {
+const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles, current, total, prevLabel = "Previous project", nextLabel = "Next project" }) => {
   const swiper = useSwiper();
   return (
     <div className={containerStyles}>
-      <button className={btnStyles} onClick={() => swiper.slidePrev()} aria-label="Previous project">
+      <button className={btnStyles} onClick={() => swiper.slidePrev()} aria-label={prevLabel}>
         <PiCaretLeftBold className={iconsStyles} />
       </button>
       {current && total && (
@@ -16,7 +16,7 @@ const WorkSliderBtns = ({ containerStyles, btnStyles, iconsStyles, current, tota
           <span className="text-white">{current}</span> / {total}
         </span>
       )}
-      <button className={btnStyles} onClick={() => swiper.slideNext()} aria-label="Next project">
+      <button className={btnStyles} onClick={() => swiper.slideNext()} aria-label={nextLabel}>
         <PiCaretRightBold className={iconsStyles} />
       </button>
     </div>

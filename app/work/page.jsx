@@ -9,7 +9,8 @@ import Link from "next/link";
 import WorkSliderBtns from "@/components/WorkSliderBtns";
 import ProjectImage from "@/components/ProjectImage";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/data/projects";
+import { projects as allProjects, localizeProject } from "@/data/projects";
+import { useLang } from "@/components/LanguageProvider";
 
 const IconLink = ({ href, label, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
@@ -29,9 +30,12 @@ const IconLink = ({ href, label, children }) => (
 );
 
 const Work = () => {
-  const [project, setProject] = useState(projects[0]);
+  const { lang, t } = useLang();
+  const projects = allProjects.map((p) => localizeProject(p, lang));
+  const [index, setIndex] = useState(0);
+  const project = projects[index];
   const handleSlideChange = (swiper) => {
-    setProject(projects[swiper.activeIndex]);
+    setIndex(swiper.activeIndex);
   };
 
   return (
@@ -69,15 +73,15 @@ const Work = () => {
               <div className="border border-white/20"></div>
               <div className="flex flex-wrap items-center gap-4">
                 <Link href={`/work/${project.slug}`}>
-                  <Button variant="outline" size="lg">Case study</Button>
+                  <Button variant="outline" size="lg">{t.work.caseStudy}</Button>
                 </Link>
                 {project.live && (
-                  <IconLink href={project.live} label="Live demo">
+                  <IconLink href={project.live} label={t.work.liveDemo}>
                     <BsArrowUpRight className="text-white text-3xl group-hover:text-accent" />
                   </IconLink>
                 )}
                 {project.github && (
-                  <IconLink href={project.github} label="GitHub repository">
+                  <IconLink href={project.github} label={t.work.github}>
                     <BsGithub className="text-white text-3xl group-hover:text-accent" />
                   </IconLink>
                 )}
@@ -104,7 +108,7 @@ const Work = () => {
                       <span className="w-3 h-3 rounded-full bg-[#28c840]"></span>
                     </div>
                     <div className="relative w-full aspect-[2/1]">
-                      <ProjectImage project={p} />
+                      <ProjectImage project={p} altPrefix={t.work.screenshotOf} />
                     </div>
                   </div>
                 </SwiperSlide>
@@ -112,6 +116,8 @@ const Work = () => {
               <WorkSliderBtns
                 current={project.num}
                 total={String(projects.length).padStart(2, "0")}
+                prevLabel={t.work.previous}
+                nextLabel={t.work.next}
                 containerStyles="flex items-center gap-4 absolute right-0 bottom-0 z-20"
                 btnStyles="w-11 h-11 rounded-full border border-accent/60 text-accent text-lg flex justify-center items-center transition-all hover:bg-accent hover:text-primary"
               />

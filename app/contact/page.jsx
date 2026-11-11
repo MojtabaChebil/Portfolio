@@ -15,36 +15,34 @@ import {
 } from "@/components/ui/select";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { site } from "@/lib/site";
+import { useLang } from "@/components/LanguageProvider";
 
-const info = [
-  { icon: <FaPhoneAlt />, title: "Phone", description: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
-  { icon: <FaEnvelope />, title: "Email", description: site.email, href: `mailto:${site.email}` },
-  { icon: <FaMapMarkerAlt />, title: "Location", description: site.location },
-];
-
-
-const topics = [
-  "Werkstudent position",
-  "Full-time position",
-  "Internship / thesis",
-  "Other",
-];
+// Keys of the topics; the labels are in lib/dictionaries.js (contact.topics)
+const topicKeys = ["werkstudent", "fulltime", "internship", "other"];
 
 const Contact = () => {
-  const [topic, setTopic] = useState("");
+  const { t: dict } = useLang();
+  const t = dict.contact;
+  const info = [
+    { icon: <FaPhoneAlt />, title: t.phoneLabel, description: site.phone, href: `tel:${site.phone.replace(/\s/g, "")}` },
+    { icon: <FaEnvelope />, title: t.emailLabel, description: site.email, href: `mailto:${site.email}` },
+    { icon: <FaMapMarkerAlt />, title: t.locationLabel, description: dict.site.location },
+  ];
+  const [topic, setTopic] = useState(""); // topic key, e.g. "werkstudent"
   const [status, setStatus] = useState("idle"); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
-    data.topic = topic;
+    const topicLabel = topic ? t.topics[topic] : "";
+    data.topic = topicLabel;
 
   
     if (!site.formspreeId) {
       const body = `${data.message}\n\n— ${data.firstname} ${data.lastname}\n${data.email}\n${data.phone || ""}`;
       window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-        topic || "Contact via portfolio"
+        topicLabel || t.defaultSubject
       )}&body=${encodeURIComponent(body)}`;
       return;
     }
@@ -75,26 +73,23 @@ const Contact = () => {
         <div className="flex flex-col xl:flex-row gap-[30px]">
           <div className="xl:w-[54%] order-2 xl:order-none">
             <form onSubmit={handleSubmit} className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl">
-              <h3 className="text-4xl text-accent">Let&apos;s work together</h3>
-              <p className="text-white/60">
-                Looking for a Werkstudent or a full-stack developer for your team?
-                Send me a message and I&apos;ll get back to you within 24 hours.
-              </p>
+              <h3 className="text-4xl text-accent">{t.title}</h3>
+              <p className="text-white/60">{t.text}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Input name="firstname" type="text" placeholder="First name" required />
-                <Input name="lastname" type="text" placeholder="Last name" required />
-                <Input name="email" type="email" placeholder="Email address" required />
-                <Input name="phone" type="tel" placeholder="Phone number (optional)" />
+                <Input name="firstname" type="text" placeholder={t.firstname} required />
+                <Input name="lastname" type="text" placeholder={t.lastname} required />
+                <Input name="email" type="email" placeholder={t.email} required />
+                <Input name="phone" type="tel" placeholder={t.phone} />
               </div>
               <Select value={topic} onValueChange={setTopic}>
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="What is it about?" />
+                  <SelectValue placeholder={t.topicPlaceholder} />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    {topics.map((t) => (
-                      <SelectItem key={t} value={t}>
-                        {t}
+                    {topicKeys.map((key) => (
+                      <SelectItem key={key} value={key}>
+                        {t.topics[key]}
                       </SelectItem>
                     ))}
                   </SelectGroup>
@@ -103,16 +98,16 @@ const Contact = () => {
               <Textarea
                 name="message"
                 className="h-[200px]"
-                placeholder="Type your message here."
+                placeholder={t.message}
                 required
               />
               <div className="flex items-center justify-end gap-4">
-                {status === "sent" && <p className="text-accent">Thanks! Your message was sent.</p>}
+                {status === "sent" && <p className="text-accent">{t.sent}</p>}
                 {status === "error" && (
-                  <p className="text-red-400">Something went wrong – please email me directly.</p>
+                  <p className="text-red-400">{t.error}</p>
                 )}
                 <Button type="submit" size="md" className="max-w-40" disabled={status === "sending"}>
-                  {status === "sending" ? "Sending…" : "Send message"}
+                  {status === "sending" ? t.sending : t.submit}
                 </Button>
               </div>
             </form>

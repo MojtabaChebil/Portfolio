@@ -2,7 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { BsArrowLeft, BsArrowUpRight, BsGithub } from "react-icons/bs";
-import { projects, getProject } from "@/data/projects";
+import { projects, getProject, localizeProject } from "@/data/projects";
+import { getLang } from "@/lib/i18n";
+import { getDictionary } from "@/lib/dictionaries";
 import ProjectImage from "@/components/ProjectImage";
 import { Button } from "@/components/ui/button";
 
@@ -12,7 +14,7 @@ export function generateStaticParams() {
 }
 
 export function generateMetadata({ params }) {
-  const project = getProject(params.slug);
+  const project = localizeProject(getProject(params.slug), getLang());
   return project ? { title: project.title, description: project.summary } : {};
 }
 
@@ -24,14 +26,16 @@ const Section = ({ title, children }) => (
 );
 
 export default function ProjectPage({ params }) {
-  const project = getProject(params.slug);
+  const lang = getLang();
+  const t = getDictionary(lang).work;
+  const project = localizeProject(getProject(params.slug), lang);
   if (!project) notFound();
 
   return (
     <section className="py-12">
       <div className="container mx-auto max-w-[900px] flex flex-col gap-10">
         <Link href="/work" className="flex items-center gap-2 text-white/60 hover:text-accent w-max">
-          <BsArrowLeft /> All projects
+          <BsArrowLeft /> {t.allProjects}
         </Link>
 
         <div className="flex flex-col gap-3">
@@ -58,7 +62,7 @@ export default function ProjectPage({ params }) {
           </div>
         ) : (
           <div className="relative w-full h-[260px] md:h-[440px] rounded-xl overflow-hidden">
-            <ProjectImage project={project} sizes="(min-width: 900px) 900px, 100vw" />
+            <ProjectImage project={project} sizes="(min-width: 900px) 900px, 100vw" altPrefix={t.screenshotOf} />
           </div>
         )}
 
@@ -66,14 +70,14 @@ export default function ProjectPage({ params }) {
           {project.live && (
             <a href={project.live} target="_blank" rel="noopener noreferrer">
               <Button size="lg" className="flex gap-2">
-                Live demo <BsArrowUpRight />
+                {t.liveDemo} <BsArrowUpRight />
               </Button>
             </a>
           )}
           {project.github && (
             <a href={project.github} target="_blank" rel="noopener noreferrer">
               <Button variant="outline" size="lg" className="flex gap-2">
-                <BsGithub /> Source code
+                <BsGithub /> {t.sourceCode}
               </Button>
             </a>
           )}
@@ -81,19 +85,19 @@ export default function ProjectPage({ params }) {
         </div>
 
         {project.problem && (
-          <Section title="The problem">
+          <Section title={t.problem}>
             <p className="text-white/70">{project.problem}</p>
           </Section>
         )}
 
         {project.role && (
-          <Section title="My role">
+          <Section title={t.role}>
             <p className="text-white/70">{project.role}</p>
           </Section>
         )}
 
         {project.features?.length > 0 && (
-          <Section title="Key features">
+          <Section title={t.features}>
             <ul className="list-disc pl-6 text-white/70 flex flex-col gap-1">
               {project.features.map((f) => (
                 <li key={f}>{f}</li>
@@ -103,7 +107,7 @@ export default function ProjectPage({ params }) {
         )}
 
         {project.gallery?.length > 0 && (
-          <Section title="Screenshots">
+          <Section title={t.screenshots}>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {project.gallery.map((g) => (
                 <li key={g.src} className="flex flex-col gap-2">
@@ -128,7 +132,7 @@ export default function ProjectPage({ params }) {
           </Section>
         )}
 
-        <Section title="Tech stack">
+        <Section title={t.stack}>
           <ul className="flex flex-wrap gap-2">
             {project.stack.map((s) => (
               <li key={s} className="text-sm text-accent border border-accent/40 rounded-full px-3 py-1">
